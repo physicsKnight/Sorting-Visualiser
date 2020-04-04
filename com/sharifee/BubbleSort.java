@@ -11,8 +11,8 @@ public class BubbleSort implements SortAlgorithm {
 
     @Override
     public void sort(int[] array) {
-        for (int pass = 0; pass < array.length - 1; i++) {
-            for (int comp; comp < array.length - 1 - pass; comp++)  {
+        for (int pass = 0; pass < array.length - 1; pass++) {
+            for (int comp = 0; comp < array.length - 1 - pass; comp++)  {
                 int a = array[comp];
                 int b = array[comp + 1];
                 if (a > b) {
@@ -20,6 +20,6 @@ public class BubbleSort implements SortAlgorithm {
                     array[comp] = b;
                 }
             }
-        } 
+        }
     }
 }
