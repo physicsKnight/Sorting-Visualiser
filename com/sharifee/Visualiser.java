@@ -3,34 +3,33 @@ package com.sharifee;
 import javax.swing.JPanel;
 import javax.swing.JComboBox;
 import javax.swing.JButton;
-import java.awt.Dimension;
-import java.awt.Graphics;
-import java.awt.Graphics2D;
-import java.awt.Color;
+import java.awt.*;
 import java.util.Random;
 
 public class Visualiser extends JPanel {
 
-    private int[] array;
     private static final int CELLSIZE = 10;
     private static final int BARS = 1280 / CELLSIZE;
+    private int[] array = new int[BARS];
     private static String[] options = {"bubble sort", "selection sort", "insertion sort", "merge sort", "quick sort"};
-    private JComboBox<String> algorithmList;
-    private JButton sortBtn;
+    private JComboBox<String> algorithmList = new JComboBox<>(options);
+    private JButton sortBtn = new JButton();
+    private JButton shuffleBtn = new JButton();
 
     public Visualiser() {
-        //setLayout(null);
-        array = new int[BARS];
-        algorithmList = new JComboBox<>(options);
-        sortBtn = new JButton();
+        sortBtn.setText("Sort");
+        shuffleBtn.setText("shuffle");
         algorithmList.setBounds(5, 5, 200, 50);
-        sortBtn.setBounds(20, 5, 100, 50);
+        sortBtn.setBounds(250, 5, 100, 50);
+        shuffleBtn.setBounds(350, 5, 100, 50);
         initBoard();
 
         sortBtn.addActionListener(e -> {
             SortAlgorithm.algorithms.get(algorithmList.getSelectedIndex()).sort(array);
             repaint();
         });
+
+        shuffleBtn.addActionListener(e -> randomise());
     }
 
     private void initBoard() {
@@ -39,7 +38,16 @@ public class Visualiser extends JPanel {
 
         add(algorithmList);
         add(sortBtn);
+        add(shuffleBtn);
         randomise();
+    }
+
+    private void delay(int n) {
+        try {
+            Thread.sleep(n);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
     }
 
     private void randomise() {
@@ -50,6 +58,7 @@ public class Visualiser extends JPanel {
             array[randIndex] = array[i];
             array[i] = temp;
         }
+        repaint();
     }
 
     @Override
