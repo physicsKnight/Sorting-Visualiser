@@ -1,55 +1,57 @@
 package com.sharifee;
 
-import java.util.Arrays;
-
 public class MergeSort implements SortAlgorithm {
 
     @Override
     public void sort(int[] array) {
-        mergeSort(array);
+        mergeSort(array, 0, array.length - 1);
     }
 
-    private int[] mergeSort(int[] array) {
-        if (array.length <= 1)
-            return array;
-        else {
-            int midIndex = array.length >> 1;
-            int[] left = mergeSort(Arrays.copyOfRange(array, 0, midIndex));
-            int[] right = mergeSort(Arrays.copyOfRange(array, midIndex, array.length));
-            return merge(left, right);
+    private void mergeSort(int[] array, int beg, int end) {
+        if (beg < end) {
+            int mid = (beg + end) >> 1;
+            mergeSort(array, beg, mid);
+            mergeSort(array, mid + 1, end);
+            merge(array, beg, mid, end);
         }
     }
 
-    private int[] merge(int[] left, int[] right) {
-        int leftIndex = 0, rightIndex = 0, mergedIndex = 0;
-        int[] merged = new int[left.length + right.length];
+    private void merge(int[] array, int beg, int mid, int end) {
+        int leftIndex = 0, rightIndex = 0, insertIndex = beg;
+        int[] left = new int[mid - beg + 1];
+        int[] right = new int[end - mid];
+
+        append(left, array,0, beg, left.length);
+        append(right, array, 0, mid + 1, right.length);
+
         while (true) {
             if (leftIndex >= left.length) {
-                return append(merged, right, mergedIndex, rightIndex);
+                append(array, right, insertIndex, rightIndex, end + 1);
+                return;
             }
             else if (rightIndex >= right.length) {
-                return append(merged, left, mergedIndex, leftIndex);
+                append(array, left, insertIndex, leftIndex, end + 1);
+                return;
             }
             else if (left[leftIndex] <= right[rightIndex]) {
-                merged[mergedIndex] = left[leftIndex];
+                array[insertIndex] = left[leftIndex];
                 leftIndex++;
             }
             else {
-                merged[mergedIndex] = right[rightIndex];
+                array[insertIndex] = right[rightIndex];
                 rightIndex++;
             }
-            mergedIndex++;
+            insertIndex++;
         }
     }
 
-    private int[] append(int[] left, int[] right, int leftIndex, int rightIndex) {
-        for (; leftIndex < left.length; leftIndex++) {
+    private void append(int[] left, int[] right, int leftIndex, int rightIndex, int end) {
+        for (; leftIndex < end; leftIndex++) {
             try {
                 left[leftIndex] = right[rightIndex++];
             } catch (IndexOutOfBoundsException ex) {
                 ex.printStackTrace();
             }
         }
-        return left;
     }
 }
