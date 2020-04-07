@@ -7,13 +7,14 @@ public class InsertionSort implements SortAlgorithm {
     // unsorted value.
 
     @Override
-    public void sort(int[] array) {
+    public void sort(int[] array, Visualiser visualiser) {
         for (int index = 1; index < array.length; index++)  {
             for (int insertIndex = index; insertIndex > 0; insertIndex--) {
                 int a = array[insertIndex - 1];
                 int b = array[insertIndex];
                 if (b > a)
                     break;
+                visualiser.delay(10);
                 array[insertIndex] = a;
                 array[insertIndex - 1] = b;
             }

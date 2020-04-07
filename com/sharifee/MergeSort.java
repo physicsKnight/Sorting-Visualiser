@@ -2,8 +2,11 @@ package com.sharifee;
 
 public class MergeSort implements SortAlgorithm {
 
+    private Visualiser visualiser;
+
     @Override
-    public void sort(int[] array) {
+    public void sort(int[] array, Visualiser visualiser) {
+        this.visualiser = visualiser;
         mergeSort(array, 0, array.length - 1);
     }
 
@@ -25,6 +28,7 @@ public class MergeSort implements SortAlgorithm {
         append(right, array, 0, mid + 1, right.length);
 
         while (true) {
+            visualiser.delay(10);
             if (leftIndex >= left.length) {
                 append(array, right, insertIndex, rightIndex, end + 1);
                 return;

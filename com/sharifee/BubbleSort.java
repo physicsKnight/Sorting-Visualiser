@@ -10,12 +10,13 @@ public class BubbleSort implements SortAlgorithm {
     // numbers are moved to the end.
 
     @Override
-    public void sort(int[] array) {
+    public void sort(int[] array, Visualiser visualiser) {
         for (int pass = 0; pass < array.length - 1; pass++) {
             for (int comp = 0; comp < array.length - 1 - pass; comp++)  {
                 int a = array[comp];
                 int b = array[comp + 1];
                 if (a > b) {
+                    visualiser.delay(10);
                     array[comp + 1] = a;
                     array[comp] = b;
                 }

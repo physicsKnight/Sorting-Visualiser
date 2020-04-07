@@ -3,7 +3,10 @@ package com.sharifee;
 import javax.swing.JPanel;
 import javax.swing.JComboBox;
 import javax.swing.JButton;
-import java.awt.*;
+import java.awt.Graphics2D;
+import java.awt.Graphics;
+import java.awt.Dimension;
+import java.awt.Color;
 import java.util.Random;
 
 public class Visualiser extends JPanel {
@@ -25,11 +28,17 @@ public class Visualiser extends JPanel {
         initBoard();
 
         sortBtn.addActionListener(e -> {
-            SortAlgorithm.algorithms.get(algorithmList.getSelectedIndex()).sort(array);
-            repaint();
+            Thread worker = new Thread(this::runSort);
+            worker.start();
         });
 
         shuffleBtn.addActionListener(e -> randomise());
+    }
+
+    private void runSort() {
+        int index = algorithmList.getSelectedIndex();
+        SortAlgorithm.algorithms[index].sort(array, this);
+        repaint();
     }
 
     private void initBoard() {
@@ -42,16 +51,21 @@ public class Visualiser extends JPanel {
         randomise();
     }
 
-    private void delay(int n) {
+    void delay(int n) {
+        repaint();
         try {
             Thread.sleep(n);
         } catch (InterruptedException e) {
-            e.printStackTrace();
+            Thread.currentThread().interrupt();
         }
     }
 
     private void randomise() {
         Random rand = new Random();
+
+        for (int i = 0; i < array.length; i++)
+            array[i] = i;
+
         for (int i = 0; i < array.length; i++) {
             int randIndex = rand.nextInt(array.length);
             int temp = array[randIndex];

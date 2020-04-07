@@ -2,8 +2,11 @@ package com.sharifee;
 
 public class QuickSort implements SortAlgorithm {
 
+    private Visualiser visualiser;
+
     @Override
-    public void sort(int[] array) {
+    public void sort(int[] array, Visualiser visualiser) {
+        this.visualiser = visualiser;
         quickSort(array, 0, array.length - 1);
     }
 
@@ -14,6 +17,7 @@ public class QuickSort implements SortAlgorithm {
             for (int l = left; l <= right; l++) {
                 int temp = array[l];
                 if (temp <= pivot) {
+                    visualiser.delay(10);
                     array[l] = array[insertIndex];
                     array[insertIndex] = temp;
                     insertIndex++;
