@@ -2,5 +2,9 @@ package com.sharifee;
 
 public interface SortAlgorithm {
 
-    void sort(int[] array);
+    SortAlgorithm[] algorithms = {new BubbleSort(), new SelectionSort(),
+                                  new InsertionSort(), new MergeSort(),
+                                  new QuickSort()};
+
+    void sort(int[] array, Visualiser visualiser);
 }
