@@ -1,6 +1,13 @@
 package com.sharifee;
 
 public class MergeSort implements SortAlgorithm {
+    // Split the array in half and create two sublists, left and right.
+    // repeat this process on both sides until you have only one element
+    // on its own. Start merging each left and right list together by
+    // comparing the indexes of both sides and inserting the lowest value
+    // into the original array. Repeat the whole process until the call stack
+    // rewinds to the initial recursive call and you have the original
+    // left and right lists to merge back together.
 
     private Visualiser visualiser;
 

@@ -1,6 +1,11 @@
 package com.sharifee;
 
 public class QuickSort implements SortAlgorithm {
+    // select a random value as the pivot (in this case the last element)
+    // rearrange the array so that values less than the pivot are on the
+    // left and values greater than the pivot on the right. repeat this
+    // process recursively on the left and right side until the array
+    // is sorted
 
     private Visualiser visualiser;
 

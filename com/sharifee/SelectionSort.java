@@ -1,6 +1,6 @@
 package com.sharifee;
 
-public class SelectionSort extends Visualiser implements SortAlgorithm {
+public class SelectionSort implements SortAlgorithm {
     // searches for the smallest value in the unsorted portion of the array
     // then swaps it into the next index of the array until
     // it swaps the last unsorted values
