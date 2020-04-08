@@ -91,7 +91,7 @@ public class Visualiser extends JPanel {
 
     private void drawBars(Graphics2D g2d) {
         for (int i = 0; i < array.length; i++) {
-            int height = array[i] << 2;
+            int height = 1 + array[i] << 2;
             int x = i * CELLSIZE;
             int y = 700 - (height + 20);
             g2d.fillRect(x, y, CELLSIZE, height);
