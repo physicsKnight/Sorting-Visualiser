@@ -14,7 +14,8 @@ public class Visualiser extends JPanel {
     private static final int CELLSIZE = 10;
     private static final int BARS = 1280 / CELLSIZE;
     private int[] array = new int[BARS];
-    private static String[] options = {"bubble sort", "selection sort", "insertion sort", "merge sort", "quick sort"};
+    private static String[] options = {"bubble sort", "selection sort", "insertion sort",
+                                       "merge sort", "quick sort", "heap sort"};
     private JComboBox<String> algorithmList = new JComboBox<>(options);
     private JButton sortBtn = new JButton();
     private JButton shuffleBtn = new JButton();
@@ -22,9 +23,6 @@ public class Visualiser extends JPanel {
     public Visualiser() {
         sortBtn.setText("Sort");
         shuffleBtn.setText("shuffle");
-        algorithmList.setBounds(5, 5, 200, 50);
-        sortBtn.setBounds(250, 5, 100, 50);
-        shuffleBtn.setBounds(350, 5, 100, 50);
         initBoard();
 
         sortBtn.addActionListener(e -> {
@@ -42,9 +40,6 @@ public class Visualiser extends JPanel {
     }
 
     private void initBoard() {
-        for (int i = 0; i < array.length; i++)
-            array[i] = i;
-
         add(algorithmList);
         add(sortBtn);
         add(shuffleBtn);
