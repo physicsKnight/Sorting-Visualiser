@@ -20,11 +20,9 @@ public class QuickSort implements SortAlgorithm {
             int pivot = array[right];
             int insertIndex = left;
             for (int l = left; l <= right; l++) {
-                int temp = array[l];
-                if (temp <= pivot) {
+                if (array[l] <= pivot) {
                     visualiser.delay(10);
-                    array[l] = array[insertIndex];
-                    array[insertIndex] = temp;
+                    visualiser.swap(l, insertIndex);
                     insertIndex++;
                 }
             }

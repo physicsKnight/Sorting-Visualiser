@@ -2,12 +2,15 @@ package com.sharifee;
 
 public class HeapSort implements SortAlgorithm {
 
+    private Visualiser visualiser;
+
     @Override
     public void sort(int[] array, Visualiser visualiser) {
+        this.visualiser = visualiser;
         buildMaxHeap(array);
         for (int i = array.length-1; i >= 0; i--) {
-            visualiser.delay(10);
-            swap(array,0, i);
+            visualiser.delay(12);
+            visualiser.swap(0, i);
             heapifyDown(array, 0, i-1);
         }
     }
@@ -29,15 +32,8 @@ public class HeapSort implements SortAlgorithm {
             largest = right;
 
         if (largest != i) {
-            swap(arr, i, largest);
+            visualiser.swap(i, largest);
             heapifyDown(arr, largest, n);
         }
-    }
-
-    private void swap(int[] arr, int indexOne, int indexTwo)
-    {
-        int temp = arr[indexOne];
-        arr[indexOne] = arr[indexTwo];
-        arr[indexTwo] = temp;
     }
 }

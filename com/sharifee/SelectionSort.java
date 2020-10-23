@@ -21,9 +21,8 @@ public class SelectionSort implements SortAlgorithm {
                 }
             }
             // swap values
-            visualiser.delay(10);
-            array[minIndex] = array[indexA];
-            array[indexA] = minVal;
+            visualiser.delay(12);
+            visualiser.swap(minIndex, indexA);
         }
     }
 }

@@ -15,7 +15,7 @@ public class Visualiser extends JPanel {
     private static final int BARS = 1280 / CELLSIZE;
     private int[] array = new int[BARS];
     private static String[] options = {"bubble sort", "selection sort", "insertion sort",
-                                       "merge sort", "quick sort", "heap sort"};
+                                       "merge sort", "quick sort", "heap sort", "shell sort"};
     private JComboBox<String> algorithmList = new JComboBox<>(options);
     private JButton sortBtn = new JButton();
     private JButton shuffleBtn = new JButton();
@@ -68,6 +68,12 @@ public class Visualiser extends JPanel {
             array[i] = temp;
         }
         repaint();
+    }
+
+    void swap(int a, int b) {
+        int temp = array[a];
+        array[a] = array[b];
+        array[b] = temp;
     }
 
     @Override
